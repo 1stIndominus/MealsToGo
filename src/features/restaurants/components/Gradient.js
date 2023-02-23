@@ -1,7 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import MaskedView from '@react-native-masked-view/masked-view';
-import { Text, StyleSheet, View } from "react-native";
-import Constants from 'expo-constants';
+import { Text, View } from "react-native";
 import styled from "styled-components/native";
 
 
