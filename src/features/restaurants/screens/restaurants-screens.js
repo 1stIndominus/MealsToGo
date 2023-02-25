@@ -1,41 +1,57 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/native";
-import { View, StatusBar, FlatList } from "react-native";
-import { Searchbar } from "react-native-paper";
+import { View, FlatList } from "react-native";
+import { ActivityIndicator } from "react-native-paper";
 import { RestaurantInfoCard } from "../components/restaurant-info-card-component";
 import {LinearGradient} from 'expo-linear-gradient';
 import { Gradient as TextGradien } from "../components/Gradient";
 import { Spacer } from "../../../components/spacer/spacer-component";
 import { SafeArea } from "../../../components/utility/safeAreaComponent";
-
-const SearchContainer = styled(View)`
-  padding: ${(props) => props.theme.space[3]};
-`;
+import { RestaurantsContext } from "../../../services/restaurantsContext";
+import { Search } from "../components/searchComponent";
 
 const Gradient = styled(LinearGradient)`
   flex: 1;
 `;
 
-export const RestaurantsScreens = () => (
-  <Gradient colors={['#0093e9', '#80d0c7']}>
-    <SafeArea>
-      <SearchContainer>
-        <Searchbar />
-      </SearchContainer>
+const Loading = styled(ActivityIndicator)`
+  margin-left: -25px;
+`;
 
-      <TextGradien />
+const LoadingContainer = styled(View)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
 
-      <FlatList 
-        data={[{ name: 1}, { name: 2 }, { name: 3 }]}
-        renderItem={() => (
-          <Spacer position="bottom" size="large">
-            <RestaurantInfoCard />
-          </Spacer>
+`;
+
+export const RestaurantsScreens = () => {
+  const { restaurants, isLoading, error } = useContext(RestaurantsContext)
+
+  return (
+    <Gradient colors={['#0093e9', '#80d0c7']}>
+      <SafeArea>
+        {isLoading && (
+          <LoadingContainer>
+            <Loading size={50} animating={true}  />
+          </LoadingContainer>
         )}
-        keyExtractor={(item) => item.name}
-        contentContainerStyle={{ padding: 16 }}
-      />
-      
-    </SafeArea>
-  </Gradient>
-);
+        
+        <Search />
+        {/* <TextGradien /> */}
+
+        <FlatList 
+          data={restaurants}
+          renderItem={({ item }) => (
+            <Spacer position="bottom" size="large">
+              <RestaurantInfoCard restaurant={item} />
+            </Spacer>
+          )}
+          keyExtractor={(item) => item.name}
+          contentContainerStyle={{ padding: 16 }}
+        />
+        
+      </SafeArea>
+    </Gradient>
+  );
+};
