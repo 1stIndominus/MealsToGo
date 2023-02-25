@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components/native";
-import { View, FlatList, TouchableOpacity } from "react-native";
+import { FlatList, TouchableOpacity } from "react-native";
 import { ActivityIndicator } from "react-native-paper";
 import { RestaurantInfoCard } from "../components/restaurant-info-card-component";
 import { LinearGradient } from "expo-linear-gradient";
@@ -14,18 +14,24 @@ const Gradient = styled(LinearGradient)`
   flex: 1;
 `;
 
+const RestaurantList = styled(FlatList).attrs({
+  contentContainerStyle: {
+    padding: 16,
+  },
+})``;
+
 const Loading = styled(ActivityIndicator)`
   margin-left: -25px;
 `;
 
-const LoadingContainer = styled(View)`
+const LoadingContainer = styled.View`
   position: absolute;
   top: 50%;
   left: 50%;
 `;
 
 export const RestaurantsScreens = ({ navigation }) => {
-  const { restaurants, isLoading, error } = useContext(RestaurantsContext);
+  const { restaurants, isLoading } = useContext(RestaurantsContext);
 
   return (
     <Gradient colors={["#0093e9", "#80d0c7"]}>
@@ -36,15 +42,19 @@ export const RestaurantsScreens = ({ navigation }) => {
           </LoadingContainer>
         )}
 
-        <Search />
         <TextGradien />
+        <Search />
 
-        <FlatList
+        <RestaurantList
           data={restaurants}
           renderItem={({ item }) => {
             return (
               <TouchableOpacity
-                onPress={() => navigation.navigate("RestaurantDetail")}
+                onPress={() =>
+                  navigation.navigate("RestaurantDetail", {
+                    restaurant: item,
+                  })
+                }
               >
                 <Spacer position="bottom" size="large">
                   <RestaurantInfoCard restaurant={item} />
@@ -53,7 +63,6 @@ export const RestaurantsScreens = ({ navigation }) => {
             );
           }}
           keyExtractor={(item) => item.name}
-          contentContainerStyle={{ padding: 16 }}
         />
       </SafeArea>
     </Gradient>

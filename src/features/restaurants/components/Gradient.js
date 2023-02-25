@@ -1,8 +1,8 @@
-import { LinearGradient } from 'expo-linear-gradient';
-import MaskedView from '@react-native-masked-view/masked-view';
+import React from "react";
+import { LinearGradient } from "expo-linear-gradient";
+import MaskedView from "@react-native-masked-view/masked-view";
 import { Text, View } from "react-native";
 import styled from "styled-components/native";
-
 
 const Section = styled(View)`
   align-items: center;
@@ -18,13 +18,13 @@ export const Gradient = () => {
     <Section>
       <MaskedView
         maskElement={
-          <Title style={{ backgroundColor: 'transparent' }}>
+          <Title style={{ backgroundColor: "transparent" }}>
             Food that you can order
           </Title>
         }
       >
         <LinearGradient
-          colors={['#FF3CAC', '#1345E0']}
+          colors={["#FF3CAC", "#1345E0"]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
         >
@@ -32,5 +32,5 @@ export const Gradient = () => {
         </LinearGradient>
       </MaskedView>
     </Section>
-  )
-}
+  );
+};
