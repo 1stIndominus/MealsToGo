@@ -44,3 +44,5 @@ export const LocationContextProvider = ({ children }) => {
     </LocationContext.Provider>
   );
 };
+
+export default LocationContextProvider;

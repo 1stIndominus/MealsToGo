@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components/native";
 import { FlatList, TouchableOpacity } from "react-native";
 import { ActivityIndicator } from "react-native-paper";
@@ -8,7 +8,9 @@ import { Gradient as TextGradien } from "../components/Gradient";
 import { Spacer } from "../../../components/spacer/spacer-component";
 import { SafeArea } from "../../../components/utility/safeAreaComponent";
 import { RestaurantsContext } from "../../../services/restaurantsContext";
+import { FavoritesContext } from "../../../services/favorites/favoritesContext";
 import { Search } from "../components/searchComponent";
+import { FavoritesBar } from "../../../components/favorites/favoritesBarComponent";
 
 const Gradient = styled(LinearGradient)`
   flex: 1;
@@ -31,10 +33,12 @@ const LoadingContainer = styled.View`
 `;
 
 export const RestaurantsScreens = ({ navigation }) => {
-  const { restaurants, isLoading } = useContext(RestaurantsContext);
+  const [isToggled, setIsToggled] = useState(false);
+  const { isLoading, restaurants } = useContext(RestaurantsContext);
+  const { favorites } = useContext(FavoritesContext);
 
   return (
-    <Gradient colors={["#0093e9", "#80d0c7"]}>
+    <Gradient colors={["#8EC5FC", "#E0C3FC"]}>
       <SafeArea>
         {isLoading && (
           <LoadingContainer>
@@ -42,8 +46,18 @@ export const RestaurantsScreens = ({ navigation }) => {
           </LoadingContainer>
         )}
 
-        <TextGradien />
-        <Search />
+        {/* <TextGradien /> */}
+        <Search
+          onFavoritesToggle={() => setIsToggled(!isToggled)}
+          isFavoritesToggled={isToggled}
+        />
+
+        {isToggled && (
+          <FavoritesBar
+            favorites={favorites}
+            onNavigate={navigation.navigate}
+          />
+        )}
 
         <RestaurantList
           data={restaurants}

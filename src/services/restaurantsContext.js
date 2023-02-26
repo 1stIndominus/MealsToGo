@@ -1,6 +1,9 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 import { LocationContext } from "./location/locationContext";
-import { restaurantsRequest, restaurantsTransform } from "./restaurantsService";
+import {
+  restaurantsRequest,
+  restaurantsTransform,
+} from "../services/restaurantsService";
 
 export const RestaurantsContext = createContext();
 
@@ -47,3 +50,5 @@ export const RestaurantsContextProvider = ({ children }) => {
     </RestaurantsContext.Provider>
   );
 };
+
+export default RestaurantsContextProvider;
