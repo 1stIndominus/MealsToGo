@@ -24,7 +24,7 @@ export const Gradient = () => {
         }
       >
         <LinearGradient
-          colors={["#FF3CAC", "#1345E0"]}
+          colors={["#FDFDFD", "#6506F7"]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
         >

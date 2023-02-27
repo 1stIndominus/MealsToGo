@@ -46,7 +46,7 @@ export const RestaurantsScreens = ({ navigation }) => {
           </LoadingContainer>
         )}
 
-        {/* <TextGradien /> */}
+        <TextGradien />
         <Search
           onFavoritesToggle={() => setIsToggled(!isToggled)}
           isFavoritesToggled={isToggled}
