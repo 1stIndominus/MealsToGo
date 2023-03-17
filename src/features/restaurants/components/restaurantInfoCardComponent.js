@@ -14,7 +14,7 @@ import {
   Rating,
   Section,
   SectionEnd,
-} from "./restaurants-info-card-styles";
+} from "./restaurantsInfoCardStyles";
 
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {

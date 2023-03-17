@@ -6,7 +6,7 @@ import { Text } from "../../../components/typography/textComponent";
 import { Spacer } from "../../../components/spacer/spacer-component";
 import { SafeArea } from "../../../components/utility/safeAreaComponent";
 import { RestaurantList } from "../../restaurants/components/restaurantListStyle";
-import { RestaurantInfoCard } from "../../restaurants/components/restaurant-info-card-component";
+import { RestaurantInfoCard } from "../../restaurants/components/restaurantInfoCardComponent";
 
 const NoFavouritesArea = styled(SafeArea)`
   align-items: center;

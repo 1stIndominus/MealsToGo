@@ -1,5 +1,5 @@
 import React from "react";
-import LottieView from "lottie-react-native";
+// import LottieView from "lottie-react-native";
 
 import { Spacer } from "../../../components/spacer/spacer-component";
 import {
@@ -16,13 +16,13 @@ export const AccountScreen = ({ navigation }) => {
     <AccountBackground>
       <AccountCover />
       <AnimationWrapper>
-        <LottieView
+        {/* <LottieView
           key="animation"
           autoPlay
           loop
           resizeMode="cover"
           source={require("../../../../assets/burger-of-the-day.json")}
-        />
+        /> */}
       </AnimationWrapper>
       <Title>Meals To Go</Title>
       <AccountContainer>

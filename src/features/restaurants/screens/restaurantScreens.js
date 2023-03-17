@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { FadeInView } from "../../../components/animations/fadeAnimation";
 import { TouchableOpacity } from "react-native";
 import { ActivityIndicator } from "react-native-paper";
-import { RestaurantInfoCard } from "../components/restaurant-info-card-component";
+import { RestaurantInfoCard } from "../components/restaurantInfoCardComponent";
 import { LinearGradient } from "expo-linear-gradient";
 import { Gradient as TextGradien } from "../components/Gradient";
 import { Spacer } from "../../../components/spacer/spacer-component";
@@ -13,6 +13,8 @@ import { FavoritesContext } from "../../../services/favorites/favoritesContext";
 import { Search } from "../components/searchComponent";
 import { FavoritesBar } from "../../../components/favorites/favoritesBarComponent";
 import { RestaurantList } from "../components/restaurantListStyle";
+// import Config from "react-native-config";
+// import { Platform } from "react-native";
 
 const Gradient = styled(LinearGradient)`
   flex: 1;
@@ -32,6 +34,13 @@ export const RestaurantsScreens = ({ navigation }) => {
   const [isToggled, setIsToggled] = useState(false);
   const { isLoading, restaurants } = useContext(RestaurantsContext);
   const { favorites } = useContext(FavoritesContext);
+
+  // const backgroundColor = Platform.select({
+  //   ios: Config.IOS_BACKGROUND_COLOR,
+  //   android: Config.ANDROID_BACKGROUND_COLOR,
+  // });
+
+  // <View style={[styles.container, { backgroundColor }]} />
 
   return (
     <Gradient colors={["#8EC5FC", "#E0C3FC"]}>
